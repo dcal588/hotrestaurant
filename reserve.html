@@ -45,9 +45,22 @@
     </div>
       <a href="#">API Table Link</a> || <a href="#">API Wait List</a>
   </div>
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script> $('#submit').on('keypress click ', function(event) {
+    event.preventDefault();
+    var newReservation = {
+      name: $('#name').val().trim(),
+      phone: $('#phone').val().trim(),
+      email: $('#email').val().trim(),
+      id_number: $('#id_number').val().trim(),
+    };
+    $.post("/api/new", newReservation)
+      .done(function(data) {
+        alert("Adding Reservation...");
+        var newReservation = req.body;
+});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="assets/javascript/app.js"></script>
-
+</body>
 </html>
