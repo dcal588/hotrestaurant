@@ -81,6 +81,16 @@ app.get("/api/:reservations?", function(req,res)
 
   });
 
+  //create New reservations - takes in JSON input
+  app.post("/api/new", function(req, res) {
+    var newreservation = req.body;
+    newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+
+    console.log(newreservation);
+    reservations.push(newreservation);
+    res.json(newreservation);
+  })
+
 //server Listening
 app.listen(PORT, function ()
   {
