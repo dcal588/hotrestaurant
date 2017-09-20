@@ -17,35 +17,30 @@ app.use(bodyParser.json({ type: "application/vnd.api"}));
 
 // Current Reservations (DATA)
 var reservations = [{
-  routeName: "John",
+  id_number: "John",
   name: "John",
   time: 1700,
-  numberInParty: 4,
-  specialOccasion: "birthday"
+  phoneNumber: 4,
 }, {
-  routeName: "Randy",
+  id_number: "Randy",
   name: "Randy",
   time: 1730,
-  numberInParty: 6,
-  specialOccasion: "none"
+  phoneNumber: 6,
 }, {
-  routeName: "Megan",
+  id_number: "Megan",
   name: "Megan",
   time: 1800,
-  numberInParty: 2,
-  specialOccasion: "anniversary"
+  phoneNumber: 2,
 }, {
-  routeName: "Tara",
+  id_number: "Tara",
   name: "Tara",
   time: 1830,
-  numberInParty: 8,
-  specialOccasion: "none"
+  phoneNumber: 8,
 }, {
-  routeName: "Tessa",
+  id_number: "Tessa",
   name: "Tessa",
   time: 1900,
-  numberInParty: 3,
-  specialOccasion: "birthday"
+  phoneNumber: 3,
 }];
 
 
@@ -56,11 +51,11 @@ app.get("/", function(req,res)
   });
 
   app.get("/tables", function(req, res) {
-    res.sendfile(path.join(_dirname, "tables.html"));
+    res.sendfile(path.join(__dirname, "tables.html"));
   });
 
   app.get("/reserve", function(req, res) {
-    res.sendfile(path,join(_dirname, "reserve.html"))
+    res.sendfile(path.join(__dirname, "reserve.html"))
   });
 
   //json search
@@ -70,9 +65,19 @@ app.get("/api/:reservations?", function(req,res)
     if (party)
       {
         console.log(party);
-      }
-  })
 
+        for (var i =0; i < reservations[i].length; i++)
+        {
+          if (party === reservations[i].routeName)
+          {
+            return res.json(reservations[i]);
+          }
+        }
+        return res.json(false);
+      }
+      return res.json(reservations);
+
+  });
 
 //server Listening
 app.listen(PORT, function ()
